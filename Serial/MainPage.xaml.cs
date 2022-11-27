@@ -1,4 +1,5 @@
 ﻿using System.IO.Ports;
+using System.Text;
 
 namespace Serial;
 
@@ -104,8 +105,20 @@ public partial class MainPage : ContentPage
 
     }
 
-    private void btnSend_Clicked(object sender, EventArgs e)
+    private async void btnSend_Clicked(object sender, EventArgs e)
     {
+		try
+		{
+            string messageOut = entrySend.Text;
+            messageOut += "\r\n";
+            byte[] messageBytes = Encoding.UTF8.GetBytes(messageOut);
+            serialPort.Write(messageBytes, 0, messageBytes.Length);
+        }
+		catch(Exception ex)
+		{
+			await DisplayAlert("Alert",ex.Message, "OK")
+		}
+
 
     }
 
