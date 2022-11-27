@@ -7,7 +7,7 @@
     <HorizontalStackLayout
         Spacing="25"
         Padding="30,0"
-        VerticalOptions="Center">
+        VerticalOptions="StartAndExpand">
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Button
@@ -46,8 +46,9 @@
                     Text="Recieved Packet"
                     HorizontalOptions="Center"/>
                 <CheckBox
+                    x:Name="checkBoxHistory"
                     BindingContext="checkBoxHistory"
-                    IsChecked="True"
+                    IsChecked="False"
                     HorizontalOptions="Center"/>
             </HorizontalStackLayout>
             <ScrollView
@@ -56,6 +57,29 @@
                 VerticalOptions="StartAndExpand"/>
             <Label
                 x:Name="labelRxdata"
+                Text="Recieved Packet"
+                MinimumWidthRequest="310"/>
+            <HorizontalStackLayout>
+                <Label
+                       Text="Parsed Packet"/>
+                <CheckBox
+                    x:Name="checkBoxParsedHistory"
+                    BindingContext="checkBoxHistory"
+                    IsChecked="False"
+                    HorizontalOptions="Center"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Length    Header  Number Analog0   Analog1     Analog2     Analog2     Analog3     Analog4     Analog5     Binary  CkSumRX"
+                    HorizontalOptions="Center"/>
+               
+            </HorizontalStackLayout>
+            <ScrollView
+                x:Name="scrollViewParsedData"
+                MaximumHeightRequest="500"
+                VerticalOptions="StartAndExpand"/>
+            <Label
+                x:Name="labelParsedData"
                 Text="Recieved Packet"
                 MinimumWidthRequest="310"/>
 
