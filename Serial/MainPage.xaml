@@ -3,39 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Serial.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+    <HorizontalStackLayout
+        Spacing="25"
+        Padding="30,0"
+        VerticalOptions="Center">
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button
+                    x:Name="btnOpenClose"
+                    Text="Open"
+                    SemanticProperties.Hint="Open comport"
+                    Clicked="btnOpenClose_Clicked"/>
+                <Button
+                    x:Name="btnClear"
+                    Text="Clear"
+                    SemanticProperties.Hint="Clear serial data"
+                    Clicked="btnClear_Clicked"/>
 
+                <Picker
+                    x:Name="portPicker"
+                    Title="Select ComPort"
+                    HorizontalOptions="Center"/>
+
+             </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button
+                    x:Name="btnSend"  
+                    Text="Send"
+                    Clicked="btnSend_Clicked"
+                    HorizontalOptions="Center"/>
+                <Entry
+                    x:Name="entrySend"
+                    Text="###1111196"
+                    HorizontalOptions="Center"/>
+
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Recieved Packet"
+                    HorizontalOptions="Center"/>
+                <CheckBox
+                    BindingContext="checkBoxHistory"
+                    IsChecked="True"
+                    HorizontalOptions="Center"/>
+            </HorizontalStackLayout>
+            <ScrollView
+                x:Name="scrollViewRecData"
+                MaximumHeightRequest="500"
+                VerticalOptions="StartAndExpand"/>
             <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+                x:Name="labelRxdata"
+                Text="Recieved Packet"
+                MinimumWidthRequest="310"/>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
 
         </VerticalStackLayout>
-    </ScrollView>
-
+    </HorizontalStackLayout>
 </ContentPage>
