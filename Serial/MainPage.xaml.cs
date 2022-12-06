@@ -118,7 +118,7 @@ public partial class MainPage : ContentPage
 			}
 
 
-			string parsedData = $"{newPacket.Length,-13}" +
+			string parsedData = $"{newPacket.Length,-14}" +
 								$"{newPacket.Substring(0, 3),-14}" +
 								$"{newPacket.Substring(3, 3),-14}" +
 								$"{newPacket.Substring(6, 4),-14}" +
@@ -128,7 +128,12 @@ public partial class MainPage : ContentPage
 								$"{newPacket.Substring(22, 4),-14}" +
 								$"{newPacket.Substring(26, 4),-14}" +
 								$"{newPacket.Substring(30, 4),-14}" +
-								$"{newPacket.Substring(34, 4),-14}" + "\r\n";
+								$"{newPacket.Substring(34, 3),-14}" + 
+								$"{calChkSumm,-14}" +
+								$"{lostPacketCount, -14}"+
+								$"{chkSumError, -14}"+
+								$"{packetRollover}"+
+								"\r\n";
 
 
 
