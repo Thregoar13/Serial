@@ -46,6 +46,56 @@
 
             </HorizontalStackLayout>
         </VerticalStackLayout>
+        <VerticalStackLayout>
+            
+                <HorizontalStackLayout>
+                    <Label
+                    Text="Solar Voltage"/>
+                    <Label
+                    x:Name ="labelSolarVoltage"
+                    MinimumWidthRequest="100"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+
+                    <Label
+                    Text="Battery Voltage"/>
+                    <Label
+                    x:Name ="labelBatteryVoltage"
+                    MinimumWidthRequest="100"/>
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout>
+
+                    <Label
+                    Text="Battery Current"/>
+                    <Label
+                    x:Name ="labelBatteryCurrent"
+                    MinimumWidthRequest="100"/>
+                </HorizontalStackLayout>
+                
+                <HorizontalStackLayout>
+                    <Label
+                    Text="LED 1 Current"/>
+                    <Label
+                    x:Name ="labelLED1Current"
+                    MinimumWidthRequest="100"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout>
+
+                    <Label
+                    Text="LED 2 Current"/>
+                    <Label
+                    x:Name ="labelLED2Current"
+                    MinimumWidthRequest="100"/>
+                </HorizontalStackLayout>
+
+
+            
+
+
+
+        </VerticalStackLayout>
 
 
         <VerticalStackLayout>
@@ -96,7 +146,7 @@
                      Text="Parsed Packet"/>
             <HorizontalStackLayout>
                 <Label
-                    Text="Length    Header  Number   Analog0   Analog1     Analog2     Analog2     Analog3     Analog4     Analog5     Binary  CkSumRX    CkSumCalLost    ChkError    Rollover"
+                    Text="Length    Header  Number   Analog0   Analog1     Analog2     Analog3     Analog4     Analog5     Binary  CkSumRX    CkSumCalLost    ChkError    Rollover"
                     HorizontalOptions="Center"/>
 
             </HorizontalStackLayout>

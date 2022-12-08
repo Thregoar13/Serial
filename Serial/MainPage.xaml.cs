@@ -20,6 +20,8 @@ public partial class MainPage : ContentPage
     StringBuilder stringBuilderSend = new StringBuilder("###1111196");
 
     SerialPort serialPort = new SerialPort();
+
+    //SolarCalc solarCalc = new SolarCalc();
     public MainPage()
     {
         InitializeComponent();
@@ -111,6 +113,8 @@ public partial class MainPage : ContentPage
                 int recChkSum = Convert.ToInt32(newPacket.Substring(34, 3));
                 if (recChkSum == calChkSum)
                 {
+
+                    //DisplaySolarData(newPacket);
                     oldPacketNumber = newPacketNumber;
                 }
                 else
@@ -153,8 +157,16 @@ public partial class MainPage : ContentPage
         }
     }
 
-
-
+   /* private void DisplaySolarData(string validPacket)
+    {
+        solarCalc.ParseSolarData(validPacket);
+        labelSolarVoltage.Text = solarCalc.GetVoltage(solarCalc.analogVoltage[0]);
+        labelBatteryVoltage.Text = solarCalc.GetVoltage(solarCalc.analogVoltage[2]);
+        labelBatteryCurrent.Text = solarCalc.GetCurrent(solarCalc.analogVolatage[1], solarCalc.analogVoltage[2]);
+        labelLED1Current.Text = solarCalc.GetLedCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4]);
+        labelLED2Current.Text = solarCalc.GetLedCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3]);
+    }
+   */
     private void btnOpenClose_Clicked(object sender, EventArgs e)
     {
         if (!bPortOpen)
