@@ -26,6 +26,24 @@
                             x:Name="portPicker"
                             Title="Select ComPort"
                             HorizontalOptions="Center"/>
+
+
+
+
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Bits"
+                    FontSize="Medium"
+                    />
+                <Button x:Name="btnBits3"   Text="1"    FontSize="Medium" Clicked="btnBits3_Clicked"/>
+                <Button x:Name="btnBits2"   Text="1"    FontSize="Medium" Clicked="btnBits2_Clicked"/>
+                <Button x:Name="btnBits1"   Text="1"    FontSize="Medium" Clicked="btnBits1_Clicked"/>
+                <Button x:Name="btnBits0"   Text="1"    FontSize="Medium" Clicked="btnBits0_Clicked"/>
+
+
+
+
             </HorizontalStackLayout>
         </VerticalStackLayout>
 

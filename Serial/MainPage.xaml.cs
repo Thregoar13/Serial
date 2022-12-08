@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using System.Net.Sockets;
 using System.Text;
+using Windows.Devices.PointOfService;
 
 namespace Serial;
 
@@ -115,7 +116,7 @@ public partial class MainPage : ContentPage
                 else
                 {
                     chkSumError++;
-                   // labelChkSumError.Text = chkSumError.ToString();
+                    // labelChkSumError.Text = chkSumError.ToString();
                 }
 
             }
@@ -137,7 +138,7 @@ public partial class MainPage : ContentPage
                                 $"{chkSumError,-14}    " +
                                 $"{packetRollover,-14}    " +
                                 "\r\n";
-            
+
 
 
 
@@ -192,7 +193,68 @@ public partial class MainPage : ContentPage
 
     }
 
+    private void btnBits0_Clicked(object sender, EventArgs e)
+    {
+        ButtonClicked(0);
+    }
+    private void btnBits1_Clicked(object sender, EventArgs e)
+    {
+        ButtonClicked(1);
+    }
 
 
+    private void btnBits2_Clicked(object sender, EventArgs e)
+    {
+        ButtonClicked(2);
+    }
 
+    private void btnBits3_Clicked(object sender, EventArgs e)
+    {
+        ButtonClicked(3);
+    }
+
+
+    private void ButtonClicked(int i)
+    {
+
+        Button[] btnBits = new Button[] { btnBits0, btnBits1, btnBits2, btnBits3 };
+        if (btnBits[i].Text == "0")
+        {
+            btnBits[i].Text = "1";
+            stringBuilderSend[i + 3] = '1';
+
+        }
+        else
+        {
+            btnBits[i].Text = "0";
+            stringBuilderSend[i + 3] = '0';
+        }
+        sendPacket();
+    }
+
+    private void sendPacket()
+    {
+        int calSendChkSum = 0;
+        try
+        {
+
+            for (int i = 3; i < 7; i++)
+            {
+                calSendChkSum += (byte)stringBuilderSend[i];
+            }
+            calSendChkSum %= 1000;
+            stringBuilderSend.Remove(7, 3);
+            stringBuilderSend.Insert(7, calSendChkSum.ToString());
+            string messageOut = stringBuilderSend.ToString();
+            entrySend.Text = stringBuilderSend.ToString();
+            messageOut += "\r\n";
+            byte[] messageBytes = Encoding.UTF8.GetBytes(messageOut);
+            serialPort.Write(messageBytes, 0, messageBytes.Length);
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Alert", ex.Message, "OK");
+        }
+
+    }
 }
