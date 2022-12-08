@@ -29,64 +29,7 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
 
-        <VerticalStackLayout>
-            <Label
-                x:Name="labelPacketLength"
-                Text="PacketLength"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelPacketNum"
-                Text="PacketNum"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelAN0"
-                Text="AN0"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelAN1"
-                Text="AN1"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelAN2"
-                Text="AN2"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelAN3"
-                Text="AN3"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelAN4"
-                Text="AN4"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelAN5"
-                Text="AN5"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelBin"
-                Text="Binary"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelRxChkSum"
-                Text="CheckSum"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelChkSumError"
-                Text="CheckSumError"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelPacketLost"
-                Text="Packetlost"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelChkSum"
-                Text="CalChkSum"
-                HorizontalOptions="Center"/>
-            <Label
-                x:Name="labelPacketRollover"
-                Text="Rollover"
-                HorizontalOptions="Center"/>
-        </VerticalStackLayout>
+
         <VerticalStackLayout>
 
             <HorizontalStackLayout>
@@ -101,9 +44,9 @@
                     HorizontalOptions="Center"/>
 
             </HorizontalStackLayout>
-        
+
             <HorizontalStackLayout>
-                
+
                 <Label
                     Text="Recieved Packet History"
                     HorizontalOptions="Center"/>
@@ -119,7 +62,7 @@
                     IsChecked="False"
                     HorizontalOptions="Center"/>
             </HorizontalStackLayout>
-        
+
             <Label
                     Text="Recieved Packet"/>
             <ScrollView
@@ -135,11 +78,11 @@
                      Text="Parsed Packet"/>
             <HorizontalStackLayout>
                 <Label
-                    Text="Length    Header  Number Analog0   Analog1     Analog2     Analog2     Analog3     Analog4     Analog5     Binary  CkSumRX"
-                    HorizontalOptions="End"/>
-               
+                    Text="Length    Header  Number   Analog0   Analog1     Analog2     Analog2     Analog3     Analog4     Analog5     Binary  CkSumRX    CkSumCalLost    ChkError    Rollover"
+                    HorizontalOptions="Center"/>
+
             </HorizontalStackLayout>
-        
+
             <ScrollView
                 x:Name="scrollViewParsedData"
                 MaximumHeightRequest="500"
@@ -147,7 +90,7 @@
             <Label
                 x:Name="labelParsedData"
                 Text="Parsed Packet"
-                MinimumWidthRequest="310"/>
+                MinimumWidthRequest="410"/>
 
 
         </VerticalStackLayout>
