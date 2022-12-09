@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:drawables="clr-namespace:GraphingClass"
+             
              x:Class="Serial.MainPage">
+
+
+    <ContentPage.Resources>
+
+        <drawables:LineDrawable x:Key="lineDrawable"/>
+    </ContentPage.Resources>
 
 
     <HorizontalStackLayout
@@ -9,6 +17,8 @@
         Padding="30,0"
         VerticalOptions="StartAndExpand">
 
+
+        
         <VerticalStackLayout>
             <HorizontalStackLayout>
                 <Button
@@ -58,53 +68,61 @@
                     MinimumWidthRequest="150"
                     Clicked="imgLED2_Clicked"/>
             </HorizontalStackLayout>
+            
+            <GraphicsView Drawable="{StaticResource lineDrawable}"
+                      x:Name = "LineGraphView"
+                      HeightRequest="500"
+                      WidthRequest="1100">
+            </GraphicsView>
         </VerticalStackLayout>
         <VerticalStackLayout>
-            
-                <HorizontalStackLayout>
-                    <Label
+
+            <HorizontalStackLayout>
+                <Label
                     Text="Solar Voltage"/>
-                    <Label
+                <Label
                     x:Name ="labelSolarVoltage"
                     MinimumWidthRequest="100"/>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
 
-                    <Label
+                <Label
                     Text="Battery Voltage"/>
-                    <Label
+                <Label
                     x:Name ="labelBatteryVoltage"
                     MinimumWidthRequest="100"/>
-                </HorizontalStackLayout>
-                
-                <HorizontalStackLayout>
+            </HorizontalStackLayout>
 
-                    <Label
+            <HorizontalStackLayout>
+
+                <Label
                     Text="Battery Current"/>
-                    <Label
+                <Label
                     x:Name ="labelBatteryCurrent"
                     MinimumWidthRequest="100"/>
-                </HorizontalStackLayout>
-                
-                <HorizontalStackLayout>
-                    <Label
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label
                     Text="LED 1 Current"/>
-                    <Label
+                <Label
                     x:Name ="labelLED1Current"
                     MinimumWidthRequest="100"/>
-                </HorizontalStackLayout>
+            </HorizontalStackLayout>
 
-                <HorizontalStackLayout>
+            <HorizontalStackLayout>
 
-                    <Label
+                <Label
                     Text="LED 2 Current"/>
-                    <Label
+                <Label
                     x:Name ="labelLED2Current"
                     MinimumWidthRequest="100"/>
-                </HorizontalStackLayout>
+     
+
+            </HorizontalStackLayout>
 
 
-            
+
 
 
 
@@ -172,8 +190,14 @@
                 x:Name="labelParsedData"
                 Text="Parsed Packet"
                 MinimumWidthRequest="410"/>
-
+       
 
         </VerticalStackLayout>
+
+        
+          
+       
+
+
     </HorizontalStackLayout>
 </ContentPage>

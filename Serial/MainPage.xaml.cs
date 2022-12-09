@@ -3,6 +3,9 @@ using System.IO.Ports;
 using System.Net.Sockets;
 using System.Text;
 using Windows.Devices.PointOfService;
+using GraphingClass;
+using System.Timers;
+
 
 namespace Serial;
 
@@ -16,14 +19,19 @@ public partial class MainPage : ContentPage
     private int packetRollover = 0;
     private int chkSumError = 0;
 
+    public int Yaxis = 0;
+    public double degrees = 0;
+    public int count = 0;
+    public int graphHeight = 500;
+
 
     StringBuilder stringBuilderSend = new StringBuilder("###1111196");
 
     SerialPort serialPort = new SerialPort();
 
     SolarCalc solarCalc = new SolarCalc();
- 
-    
+
+
 
 
     public MainPage()
@@ -42,12 +50,29 @@ public partial class MainPage : ContentPage
         serialPort.BaudRate = 115200;
         serialPort.ReceivedBytesThreshold = 1;
         serialPort.DataReceived += SerialPort_DataReceived;
+
+        var timer = new System.Timers.Timer(16);
+        timer.Elapsed += new ElapsedEventHandler(DrawNewPointOnGraph);
+        timer.Start();
     }
 
-    private void SetUpSerialPorts()
+
+    private void DrawNewPointOnGraph(object sender, ElapsedEventArgs e)
     {
+        var graphicsView = this.LineGraphView;
+        var lineGraphDrawable = (LineDrawable)graphicsView.Drawable;
+
+        lineGraphDrawable.lineGraphs[0].Yaxis = count;
+        count--;
+        if (count < 0)
+        {
+            count = graphHeight;
+        }
+
+        graphicsView.Invalidate();
 
     }
+
 
     private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
     {
@@ -171,7 +196,7 @@ public partial class MainPage : ContentPage
         labelLED1Current.Text = solarCalc.GetLedCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4]);
         labelLED2Current.Text = solarCalc.GetLedCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3]);
     }
-   
+
     private void btnOpenClose_Clicked(object sender, EventArgs e)
     {
         if (!bPortOpen)
@@ -239,7 +264,7 @@ public partial class MainPage : ContentPage
         {
             btnBits[i].Text = "1";
             stringBuilderSend[i + 3] = '1';
-            switch(i)
+            switch (i)
             {
                 case 0:
                     imgLED1.Source = "lightoff.jpg";
