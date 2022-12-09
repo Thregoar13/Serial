@@ -21,7 +21,11 @@ public partial class MainPage : ContentPage
 
     SerialPort serialPort = new SerialPort();
 
-    //SolarCalc solarCalc = new SolarCalc();
+    SolarCalc solarCalc = new SolarCalc();
+ 
+    
+
+
     public MainPage()
     {
         InitializeComponent();
@@ -114,7 +118,7 @@ public partial class MainPage : ContentPage
                 if (recChkSum == calChkSum)
                 {
 
-                    //DisplaySolarData(newPacket);
+                    DisplaySolarData(newPacket);
                     oldPacketNumber = newPacketNumber;
                 }
                 else
@@ -157,16 +161,16 @@ public partial class MainPage : ContentPage
         }
     }
 
-   /* private void DisplaySolarData(string validPacket)
+    private void DisplaySolarData(string validPacket)
     {
         solarCalc.ParseSolarData(validPacket);
         labelSolarVoltage.Text = solarCalc.GetVoltage(solarCalc.analogVoltage[0]);
         labelBatteryVoltage.Text = solarCalc.GetVoltage(solarCalc.analogVoltage[2]);
-        labelBatteryCurrent.Text = solarCalc.GetCurrent(solarCalc.analogVolatage[1], solarCalc.analogVoltage[2]);
+        labelBatteryCurrent.Text = solarCalc.GetCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[2]);
         labelLED1Current.Text = solarCalc.GetLedCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[4]);
         labelLED2Current.Text = solarCalc.GetLedCurrent(solarCalc.analogVoltage[1], solarCalc.analogVoltage[3]);
     }
-   */
+   
     private void btnOpenClose_Clicked(object sender, EventArgs e)
     {
         if (!bPortOpen)
@@ -234,12 +238,29 @@ public partial class MainPage : ContentPage
         {
             btnBits[i].Text = "1";
             stringBuilderSend[i + 3] = '1';
-
+            switch(i)
+            {
+                case 0:
+                    imgLED1.Source = "lightoff.jpg";
+                    break;
+                case 1:
+                    imgLED2.Source = "lightoff.jpg";
+                    break;
+            }
         }
         else
         {
             btnBits[i].Text = "0";
             stringBuilderSend[i + 3] = '0';
+            switch (i)
+            {
+                case 0:
+                    imgLED1.Source = "lighton.jpg";
+                    break;
+                case 1:
+                    imgLED2.Source = "lighton.jpg";
+                    break;
+            }
         }
         sendPacket();
     }
@@ -269,4 +290,16 @@ public partial class MainPage : ContentPage
         }
 
     }
+
+    private void imgLED1_Clicked(object sender, EventArgs e)
+    {
+        ButtonClicked(0);
+    }
+
+    private void imgLED2_Clicked(object sender, EventArgs e)
+    {
+        ButtonClicked(1);
+    }
+
+
 }

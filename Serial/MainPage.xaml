@@ -36,14 +36,27 @@
                     Text="Bits"
                     FontSize="Medium"
                     />
-                <Button x:Name="btnBits3"   Text="1"    FontSize="Medium" Clicked="btnBits3_Clicked"/>
-                <Button x:Name="btnBits2"   Text="1"    FontSize="Medium" Clicked="btnBits2_Clicked"/>
-                <Button x:Name="btnBits1"   Text="1"    FontSize="Medium" Clicked="btnBits1_Clicked"/>
+
                 <Button x:Name="btnBits0"   Text="1"    FontSize="Medium" Clicked="btnBits0_Clicked"/>
+                <Button x:Name="btnBits1"   Text="1"    FontSize="Medium" Clicked="btnBits1_Clicked"/>
+                <Button x:Name="btnBits2"   Text="1"    FontSize="Medium" Clicked="btnBits2_Clicked"/>
+                <Button x:Name="btnBits3"   Text="1"    FontSize="Medium" Clicked="btnBits3_Clicked"/>
 
 
-
-
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <ImageButton
+                    x:Name="imgLED1"
+                    Source="lightoff.jpg"
+                    HeightRequest="200"
+                    MinimumWidthRequest="150"
+                    Clicked="imgLED1_Clicked"/>
+                <ImageButton
+                    x:Name="imgLED2"
+                    Source="lightoff.jpg"
+                    HeightRequest="200"
+                    MinimumWidthRequest="150"
+                    Clicked="imgLED2_Clicked"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
         <VerticalStackLayout>
