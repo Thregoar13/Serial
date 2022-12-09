@@ -15,19 +15,33 @@ namespace GraphingClass
         private int[] lineWidth = new int[numberOfGraphs] {1, 2, 3};
         public BaseGraphData[] lineGraphs = new BaseGraphData[numberOfGraphs];
 
-        
+      
 
         //default contructor
         public LineDrawable() : base()
         {
 
-            for(int i = 0; i < numberOfGraphs; i++)
+
+            lineGraphs[0] = new BaseGraphData
+              (
+          Yaxis: 0,
+          Xaxis: 0,
+          lineColor: Colors.White,
+          lineSize: lineWidth[1],
+          newGraph: true
+          );
+
+
+
+
+            for (int i = 1; i < numberOfGraphs; i++)
             {
+                
                 lineGraphs[i] = new BaseGraphData
                     (
                 Yaxis : 0,
                 Xaxis : 0,
-                lineColor: Colors.Red,
+                lineColor: Colors.Yellow,
                 lineSize: lineWidth[i],
                 newGraph: true
                 );

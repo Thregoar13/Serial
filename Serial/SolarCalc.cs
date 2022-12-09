@@ -38,6 +38,16 @@ namespace Serial
 
         //methods
 
+        public int Graphable(double anG )
+        {
+            int Xcord =Convert.ToInt32( ((anG / 5100) * 400));
+
+
+
+                return Xcord;
+
+        }
+
         public string ParseSolarData(string solarData)
         {
 
@@ -72,11 +82,12 @@ namespace Serial
             double ShuntVoltage = ShuntAnalog * Vref / steps;
             double dLEDCurrent = ShuntVoltage / LEDresistor;
 
+    
+            dLEDCurrent = dLEDCurrent * 1000;
             if (dLEDCurrent < 0.0001)
             {
                 dLEDCurrent = 0;
             }
-            dLEDCurrent = dLEDCurrent * 1000;
             return dLEDCurrent.ToString("0.000000");
         }
     }

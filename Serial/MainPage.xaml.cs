@@ -18,11 +18,11 @@ public partial class MainPage : ContentPage
     private int lostPacketCount = 0;
     private int packetRollover = 0;
     private int chkSumError = 0;
-
+    private int safety = 2600;
     public int Yaxis = 0;
     public double degrees = 0;
-    public int count = 0;
-    public int graphHeight = 500;
+    public int graphHeight = 400;
+    public int managing = 0;
 
 
     StringBuilder stringBuilderSend = new StringBuilder("###1111196");
@@ -62,12 +62,10 @@ public partial class MainPage : ContentPage
         var graphicsView = this.LineGraphView;
         var lineGraphDrawable = (LineDrawable)graphicsView.Drawable;
 
-        lineGraphDrawable.lineGraphs[0].Yaxis = count;
-        count--;
-        if (count < 0)
-        {
-            count = graphHeight;
-        }
+        lineGraphDrawable.lineGraphs[0].Yaxis = graphHeight - solarCalc.Graphable(solarCalc.analogVoltage[2]);
+
+        lineGraphDrawable.lineGraphs[1].Yaxis = graphHeight - solarCalc.Graphable(solarCalc.analogVoltage[0]);
+
 
         graphicsView.Invalidate();
 
@@ -185,6 +183,7 @@ public partial class MainPage : ContentPage
             }
         }
         sendPacket();
+        LoadManagement();
     }
 
     private void DisplaySolarData(string validPacket)
@@ -255,6 +254,41 @@ public partial class MainPage : ContentPage
         ButtonClicked(3);
     }
 
+    private void LoadManagement()
+    {
+        if (solarCalc.analogVoltage[2] > safety)
+        {
+
+
+            if (btnBits0.Text == "1")
+
+            {
+                ButtonClicked(0);
+                managing = 1;
+
+            }
+            if (btnBits1.Text == "1")
+            {
+                {
+
+                    ButtonClicked(1);
+                    managing = 1;
+                }
+            }
+
+
+        }
+        if (solarCalc.analogVoltage[2] < safety)
+        {
+            if (managing == 1)
+            {
+                ButtonClicked(0);
+                ButtonClicked(1);
+                managing = 0;
+            }
+        }
+    }
+       
 
     private void ButtonClicked(int i)
     {
@@ -288,7 +322,7 @@ public partial class MainPage : ContentPage
                     break;
             }
         }
-        sendPacket();
+        
     }
 
     private void sendPacket()
