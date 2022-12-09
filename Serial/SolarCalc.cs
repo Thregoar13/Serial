@@ -25,7 +25,7 @@ namespace Serial
         public SolarCalc()
         {
             ResistorValue = 100;
-            LEDresistor = 220;
+            LEDresistor = 100;
             Vref = 2.57;
             steps = 5100;
 

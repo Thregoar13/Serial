@@ -159,6 +159,7 @@ public partial class MainPage : ContentPage
                 labelParsedData.Text = parsedData;
             }
         }
+        sendPacket();
     }
 
     private void DisplaySolarData(string validPacket)
